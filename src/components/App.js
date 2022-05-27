@@ -1,12 +1,12 @@
 import React, { useReducer, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import reducer from "../reducers";
+import Event from "../components/Event";
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, []);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  // ２つの
 
   // addEventを発火させるとページ全体がリロードされてしまう
   const addEvent = (e) => {
@@ -64,7 +64,12 @@ const App = () => {
             <th>ボディー</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {/* mapでコンポーネントを回す時は中のコンポーネントをユニークなものにしないといけない */}
+          {state.map((event, index) => (
+            <Event key={index} event={event} dispatch={dispatch} />
+          ))}
+        </tbody>
       </table>
     </div>
   );
