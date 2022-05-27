@@ -65,6 +65,7 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
+          {/* mapでコンポーネントを回す時は中のコンポーネントをユニークなものにしないといけない */}
           {state.map((event, index) => (
             <Event key={index} event={event} dispatch={dispatch} />
           ))}
