@@ -25,6 +25,15 @@ const App = () => {
   };
   console.log({ state });
 
+  const deleteAllEvents = (e) => {
+    // e.preventDefaultはボタンを押した際にレンダリング(submit)される初期設定をなくすもの
+    e.preventDefault();
+    const result = window.confirm("本当に削除しますか？");
+    if (result) dispatch({ type: "DELETE_ALL_EVENTS" });
+  };
+
+  const unCreatable = title === "" || body === "";
+
   return (
     <div className="container-fluid">
       <h4>イベント作成フォーム</h4>
@@ -49,10 +58,20 @@ const App = () => {
           />
         </div>
 
-        <button className="btn btn-primary" onClick={(e) => addEvent(e)}>
+        <button
+          className="btn btn-primary"
+          disabled={unCreatable}
+          onClick={(e) => addEvent(e)}
+        >
           イベントを作成する
         </button>
-        <button className="btn btn-danger">全てのイベントを削除する</button>
+        <button
+          className="btn btn-danger"
+          disabled={state.length === 0}
+          onClick={(e) => deleteAllEvents(e)}
+        >
+          全てのイベントを削除する
+        </button>
       </form>
 
       <h4>イベント一覧</h4>
