@@ -21,7 +21,6 @@ const EventForm = ({ state, dispatch }) => {
     setTitle("");
     setBody(""); // stateのset〇〇に空文字を入れることで、投稿後リセットされるようになる
   };
-  console.log({ state });
 
   const deleteAllEvents = (e) => {
     // e.preventDefaultはボタンを押した際にレンダリング(submit)される初期設定をなくすもの
