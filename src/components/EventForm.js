@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { CREATE_EVENT } from "../actions";
+import { DELETE_ALL_EVENTS } from "../actions";
 
 const EventForm = ({ state, dispatch }) => {
   const [title, setTitle] = useState("");
@@ -8,7 +10,7 @@ const EventForm = ({ state, dispatch }) => {
   const addEvent = (e) => {
     e.preventDefault();
     dispatch({
-      type: "CREATE_EVENT",
+      type: CREATE_EVENT,
       title,
       body,
     });
@@ -25,7 +27,7 @@ const EventForm = ({ state, dispatch }) => {
     // e.preventDefaultはボタンを押した際にレンダリング(submit)される初期設定をなくすもの
     e.preventDefault();
     const result = window.confirm("本当に削除しますか？");
-    if (result) dispatch({ type: "DELETE_ALL_EVENTS" });
+    if (result) dispatch({ type: DELETE_ALL_EVENTS });
   };
 
   const unCreatable = title === "" || body === "";
